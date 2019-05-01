@@ -29,15 +29,16 @@ class Gallery {
   _onFormSubmi(e) {
     e.preventDefault();
 
-    const { name } = e.target.elements;
-    const { url } = e.target.elements;
+    const { name, url } = e.target.elements;
     const error = url.parentNode.querySelector(`.${this.form.errorClass}`);
 
     if (error !== null) error.remove();
 
     if (url.value.trim() !== '') {
+      url.value = '';
+      name.value = '';
       this.images.add(this.countId++, name.value, url.value).then((data) => {
-        this.list.prepend(data);
+        githis.list.prepend(data);
       }).catch((e) => {
         this.form.errorUi(url, e);
         throw new TypeError(e);
