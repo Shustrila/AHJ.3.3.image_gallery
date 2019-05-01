@@ -35,9 +35,9 @@ class Gallery {
     if (error !== null) error.remove();
 
     if (url.value.trim() !== '') {
-      url.value = '';
-      name.value = '';
       this.images.add(this.countId++, name.value, url.value).then((data) => {
+        url.value = '';
+        name.value = '';
         this.list.prepend(data);
       }).catch((e) => {
         this.form.errorUi(url, e);
